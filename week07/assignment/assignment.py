@@ -42,30 +42,60 @@ GREEN = 1
 BLUE  = 2
 
 
-def create_new_frame(image_file, green_file, process_file):
-    """ Creates a new image file from image_file and green_file """
+# def create_new_frame(image_file, green_file, process_file):
+#     """ Creates a new image file from image_file and green_file """
 
+#     # this print() statement is there to help see which frame is being processed
+#     print(f'{process_file[-7:-4]}', end=',', flush=True)
+
+#     image_img = Image.open(image_file)
+#     green_img = Image.open(green_file)
+
+#     # Make Numpy array
+#     np_img = np.array(green_img)
+
+#     # Mask pixels 
+#     mask = (np_img[:, :, BLUE] < 120) & (np_img[:, :, GREEN] > 120) & (np_img[:, :, RED] < 120)
+
+#     # Create mask image
+#     mask_img = Image.fromarray((mask*255).astype(np.uint8))
+
+#     image_new = Image.composite(image_img, green_img, mask_img)
+#     image_new.save(process_file)
+
+# Slightly changed create_new_frame() by only taking 1 arg and creating image files within the function
+def create_new_frame(frame_number):
+    image_file = rf'elephant/image{frame_number:03d}.png'
+    green_file = rf'green/image{frame_number:03d}.png'
+    process_file = rf'processed/image{frame_number:03d}.png'
+    
     # this print() statement is there to help see which frame is being processed
-    print(f'{process_file[-7:-4]}', end=',', flush=True)
+    print(f'Processing frame {frame_number:03d}', end=',', flush=True)
 
     image_img = Image.open(image_file)
     green_img = Image.open(green_file)
 
-    # Make Numpy array
+    # Make Numpy Array
     np_img = np.array(green_img)
 
-    # Mask pixels 
+    # Mask pixels
     mask = (np_img[:, :, BLUE] < 120) & (np_img[:, :, GREEN] > 120) & (np_img[:, :, RED] < 120)
 
-    # Create mask image
-    mask_img = Image.fromarray((mask*255).astype(np.uint8))
+    # Create mask image   
+    mask_img = Image.fromarray((mask * 255).astype(np.uint8))
 
     image_new = Image.composite(image_img, green_img, mask_img)
     image_new.save(process_file)
 
 
 # TODO add any functions you need here
-
+def process_frames_with_multiprocessing(cpu_count):
+   #  Uses multiprocessing to process all frames in parallel
+    start_time = timeit.default_timer()
+    with mp.Pool(processes=cpu_count) as pool:
+      #   Attempts to distribute frames across increasing amount of CPU cores with mp.pool
+        pool.map(create_new_frame, range(1, FRAME_COUNT + 1))
+    return timeit.default_timer() - start_time
 
 
 if __name__ == '__main__':
@@ -77,15 +107,14 @@ if __name__ == '__main__':
     yaxis_times = []
 
     # process the 10th frame (TODO modify this to loop over all frames)
-    image_number = 10
 
-    image_file = rf'elephant/image{image_number:03d}.png'
-    green_file = rf'green/image{image_number:03d}.png'
-    process_file = rf'processed/image{image_number:03d}.png'
-
-    start_time = timeit.default_timer()
-    create_new_frame(image_file, green_file, process_file)
-    print(f'\nTime To Process all images = {timeit.default_timer() - start_time}')
+   # Test for efficiency in each CPU core
+    for cpu_count in range(1, CPU_COUNT + 1):
+        elapsed_time = process_frames_with_multiprocessing(cpu_count) # Keep track of time for plot
+        print(f'\nTime with {cpu_count} CPUs = {elapsed_time} sec') # 20 total cores on my computer +4
+        xaxis_cpus.append(cpu_count)
+        yaxis_times.append(elapsed_time) 
+        # I would have expected to put time on the x axis, but this works too
 
     print(f'Total Time for ALL processing: {timeit.default_timer() - all_process_time}')
 
