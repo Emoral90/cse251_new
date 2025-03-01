@@ -19,11 +19,13 @@ Requirements
 Questions:
 1. Why can you not use the same pipe object for all the processes (i.e., why 
    do you need to create three different pipes)?
-   >
-   >
+   > Python pipes are unidirectional. Using one pipe shared between all stages
+   > could very well result in data loss, especially during the bagger and 
+   > assembler stages
 2. Compare and contrast pipes with queues (i.e., how are the similar or different)?
-   >
-   >
+   > Both pipes and queues are used to pass data between processes. However, pipes are usually 
+   > faster but only let data move in one direction at a time. Queues on the other 
+   > hand are slower but let multiple processes send and receive data more flexibly
 '''
 
 import datetime
