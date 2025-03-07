@@ -17,12 +17,34 @@ COLOR = (0, 0, 255)
 
 # TODO add any functions
 
+
 def solve(maze):
     """ Solve the maze. The path object should be a list (x, y) of the positions 
         that solves the maze, from the start position to the end position. """
 
     # TODO add code here
-    solution_path = [] 
+    def dfs(path, row, col):
+        # Base case: If we reached the end position, return True
+        if maze.at_end(row, col):
+            path.append((row, col))  # Add the final position to the path
+            return True
+        
+        # Mark the current position as visited by changing its color
+        maze.move(row, col, COLOR)
+        
+        # Retrieve possible moves (randomized order)
+        for next_row, next_col in maze.get_possible_moves(row, col):
+            if dfs(path, next_row, next_col):  # Recur with new position
+                path.append((row, col))  # Append the position if part of solution
+                return True
+        
+        # If no valid move found, backtrack and restore the position
+        maze.restore(row, col)
+        return False
+
+    solution_path = []
+    start_row, start_col = maze.get_start_pos()
+    dfs(solution_path, start_row, start_col)
     
     # Remember that an object is passed by reference, so you can pass in the 
     # solution_path object, modify it, and you won't need to return it from 
