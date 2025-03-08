@@ -59,12 +59,71 @@ def get_color():
     current_color_index += 1
     return color
 
+def thread_solve(maze, row, col, lock, color):
+    """ Recursive function to explore maze using threads """
+    global thread_count, stop
+    
+    # Stop if another thread found the exit
+    if stop:
+        return
+    
+    # Mark the current position as visited with the initial color
+    maze.move(row, col, color)
+    
+    # If we reached the end, signal all threads to stop no matter where they are
+    if maze.at_end(row, col):
+        with lock:
+            stop = True
+        return
+    
+    # Get possible moves
+    moves = maze.get_possible_moves(row, col)
+    
+    # Spawn new threads at each new fork in the road
+    threads = []
+    for i in range(1, len(moves)):  # Start from 1 to reserve first move for this thread
+        next_row, next_col = moves[i]
+        new_color = get_color()  # Assign a unique color
+        # Guard the thread_count with your life
+        with lock:
+            thread_count += 1
+        # Create thread, append it to the list, and start it
+        new_thread = threading.Thread(target=thread_solve, args=(maze, next_row, next_col, lock, new_color))
+        threads.append(new_thread)
+        new_thread.start()
+
+    # The current thread takes the first move in the list (if available)
+    if moves:
+        next_row, next_col = moves[0]
+        thread_solve(maze, next_row, next_col, lock, color)  # Current thread continues
+
+    # Wait for all newly spawned threads to complete before backtracking
+    for t in threads:
+        t.join()
+
+    # Go back to initial position to indicate backtracking only if the maze has not been solved yet
+    if not stop:
+        maze.restore(row, col)
+    
+    # for t in threads:
+    #     t.join()
+    # 
+    # maze.restore(row, col)
 
 def solve_find_end(maze):
     """ finds the end position using threads.  Nothing is returned """
     # When one of the threads finds the end position, stop all of them
     # TODO - add code here
-    pass
+    global thread_count, stop
+    stop = False
+    thread_count = 1
+    # Create lock and initial color for the recursive threads in thread_solve()
+    t_lock = threading.Lock()
+    init_color = get_color()
+    
+    # Get the starting position and launch the first thread
+    start_row, start_col = maze.get_start_pos()
+    thread_solve(maze, start_row, start_col, t_lock, init_color)
 
 
 def find_end(filename, delay):
