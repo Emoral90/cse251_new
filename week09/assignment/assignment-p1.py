@@ -24,21 +24,21 @@ def solve(maze):
 
     # TODO add code here
     def dfs(path, row, col):
-        # Base case: If we reached the end position, return True
+        # Base case: return true if the end/solution is reached
         if maze.at_end(row, col):
             path.append((row, col))  # Add the final position to the path
             return True
         
-        # Mark the current position as visited by changing its color
+        # Mark the current position as visited by changing its color to red
         maze.move(row, col, COLOR)
         
-        # Retrieve possible moves (randomized order)
+        # Retrieve possible moves
         for next_row, next_col in maze.get_possible_moves(row, col):
-            if dfs(path, next_row, next_col):  # Recur with new position
+            if dfs(path, next_row, next_col):  # Perform recursion with new position
                 path.append((row, col))  # Append the position if part of solution
                 return True
         
-        # If no valid move found, backtrack and restore the position
+        # If no valid move is found, backtrack and restore the position
         maze.restore(row, col)
         return False
 
