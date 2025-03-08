@@ -6,12 +6,14 @@ Requirements
 Questions:
 1. It is not required to save the solution path of each maze, but what would
    be your strategy if you needed to do so?
-   >
+   > 
+   I would have to save the solution path as a list to each thread, update it recursively, and store it in a shared variable when the goal is found like in last week's reading
    >
 2. Is using threads to solve the maze a depth-first search (DFS) or breadth-first search (BFS)?
    Which search is "better" in your opinion? You might need to define better. 
    (see https://stackoverflow.com/questions/20192445/which-procedure-we-can-use-for-maze-exploration-bfs-or-dfs)
    >
+   This multithreaded solution behaves like DFS since each thread explores a single path deeply before backtracking, but with a concurrent twist
    >
 '''
 
