@@ -79,7 +79,8 @@ def task_prime(value):
             - or -
         {value} is not prime
     """
-    pass
+    result = f"{value} is prime" if is_prime(value) else f"{value} is not prime"
+    return result
 
 
 def task_word(word):
@@ -90,7 +91,10 @@ def task_word(word):
             - or -
         {word} not found *****
     """
-    pass
+    with open('words.txt', 'r') as file:
+        word_list = set(file.read().split())
+    result = f"{word} Found" if word in word_list else f"{word} not found *****"
+    return result
 
 
 def task_upper(text):
@@ -98,7 +102,7 @@ def task_upper(text):
     Add the following to the global list:
         {text} ==>  uppercase version of {text}
     """
-    pass
+    return f"{text} ==> {text.upper()}"
 
 
 def task_sum(start_value, end_value):
@@ -106,7 +110,8 @@ def task_sum(start_value, end_value):
     Add the following to the global list:
         sum of {start_value:,} to {end_value:,} = {total:,}
     """
-    pass
+    total = sum(range(start_value, end_value + 1))
+    return f"sum of {start_value:,} to {end_value:,} = {total:,}"
 
 
 def task_name(url):
@@ -117,7 +122,15 @@ def task_name(url):
             - or -
         {url} had an error receiving the information
     """
-    pass
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            name = response.json().get("name", "Unknown")
+            return f"{url} has name {name}"
+        else:
+            return f"{url} had an error receiving the information"
+    except requests.RequestException:
+        return f"{url} had an error receiving the information"
 
 
 def load_json_file(filename):
@@ -134,6 +147,8 @@ def main():
     count = 0
     
     # TODO Create process pools
+
+    
 
     # The below code is example code to show you the logic of what you are supposed to do.
     # Remove it and replace with using process pools with apply_async calls.
@@ -161,6 +176,32 @@ def main():
     # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     # TODO start pools and block until they are done before trying to print
+    # Load tasks
+    task_files = glob.glob("tasks/*.task")
+    tasks = [load_json_file(file) for file in task_files]
+    
+    # Define process pools
+    cpu_bound_pool = mp.Pool(processes=mp.cpu_count())  # For CPU-intensive tasks
+    io_bound_pool = mp.Pool(processes=10)  # For I/O-intensive tasks
+    
+    # Process tasks asynchronously
+    for task in tasks:
+        if task['task'] == TYPE_PRIME:
+            cpu_bound_pool.apply_async(task_prime, (task['value'],), callback=result_primes.append)
+        elif task['task'] == TYPE_WORD:
+            io_bound_pool.apply_async(task_word, (task['word'],), callback=result_words.append)
+        elif task['task'] == TYPE_UPPER:
+            io_bound_pool.apply_async(task_upper, (task['text'],), callback=result_upper.append)
+        elif task['task'] == TYPE_SUM:
+            cpu_bound_pool.apply_async(task_sum, (task['start'], task['end']), callback=result_sums.append)
+        elif task['task'] == TYPE_NAME:
+            io_bound_pool.apply_async(task_name, (task['url'],), callback=result_names.append)
+    
+    # Close and join pools
+    cpu_bound_pool.close()
+    io_bound_pool.close()
+    cpu_bound_pool.join()
+    io_bound_pool.join()
 
     def print_list(lst):
         for item in lst:
