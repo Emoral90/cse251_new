@@ -9,24 +9,24 @@ Requirements
    
 Questions:
 1. How many processes did you specify for each pool:
-   >Finding primes:
-   >Finding words in a file:
-   >Changing text to uppercase:
-   >Finding the sum of numbers:
-   >Web request to get names of Star Wars people:
+   >Finding primes:                                 10
+   >Finding words in a file:                        20
+   >Changing text to uppercase:                     20 
+   >Finding the sum of numbers:                     10
+   >Web request to get names of Star Wars people:   20
    
-   >How do you determine these numbers:
+   >How do you determine these numbers: I figured since CPU bound tasks takes up one core each, I dont want to overload all of my 20 cores with processes. And since you have to wait pretty often for IO bound tasks, I believe double the amount of processes should allow the program to concurrently run more efficiently
    
 2. Specify whether each of the tasks is IO Bound or CPU Bound?
-   >Finding primes:
-   >Finding words in a file:
-   >Changing text to uppercase:
-   >Finding the sum of numbers:
-   >Web request to get names of Star Wars people:
+   >Finding primes:                                 CPU bound
+   >Finding words in a file:                        IO bound
+   >Changing text to uppercase:                     IO bound
+   >Finding the sum of numbers:                     CPU bound
+   >Web request to get names of Star Wars people:   IO bound
    
 3. What was your overall time, with:
-   >one process in each of your five pools:  ___ seconds
-   >with the number of processes you show in question one:  ___ seconds
+   >one process in each of your five pools:  208.94714426994324 seconds
+   >with the number of processes you show in question one:  32.48956894874573 seconds
 '''
 
 import glob
@@ -79,6 +79,7 @@ def task_prime(value):
             - or -
         {value} is not prime
     """
+    # Use is_prime() to return either true or false
     result = f"{value} is prime" if is_prime(value) else f"{value} is not prime"
     return result
 
@@ -91,6 +92,7 @@ def task_word(word):
             - or -
         {word} not found *****
     """
+    # Read from file and check if words in words.txt is in the list
     with open('words.txt', 'r') as file:
         word_list = set(file.read().split())
     result = f"{word} Found" if word in word_list else f"{word} not found *****"
@@ -102,6 +104,7 @@ def task_upper(text):
     Add the following to the global list:
         {text} ==>  uppercase version of {text}
     """
+    # Capitalize every first letter
     return f"{text} ==> {text.upper()}"
 
 
@@ -110,6 +113,7 @@ def task_sum(start_value, end_value):
     Add the following to the global list:
         sum of {start_value:,} to {end_value:,} = {total:,}
     """
+    # Get to adding the 2 values
     total = sum(range(start_value, end_value + 1))
     return f"sum of {start_value:,} to {end_value:,} = {total:,}"
 
@@ -122,6 +126,8 @@ def task_name(url):
             - or -
         {url} had an error receiving the information
     """
+    # Everythin inside a try and except block since it's considered good coding
+    # etiquette when making requests to a server
     try:
         response = requests.get(url)
         if response.status_code == 200:
@@ -132,7 +138,7 @@ def task_name(url):
     except requests.RequestException:
         return f"{url} had an error receiving the information"
 
-
+# Thank you for putting this in here
 def load_json_file(filename):
     if os.path.exists(filename):
         with open(filename) as json_file:
@@ -144,64 +150,53 @@ def load_json_file(filename):
 
 def main():
     begin_time = time.time()
-    count = 0
     
-    # TODO Create process pools
-
-    
-
-    # The below code is example code to show you the logic of what you are supposed to do.
-    # Remove it and replace with using process pools with apply_async calls.
-    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    # task_files = glob.glob("tasks/*.task")
-    # for filename in task_files:
-    #     # print()
-    #     # print(filename)
-    #     task = load_json_file(filename)
-    #     print(task)
-    #     count += 1
-    #     task_type = task['task']
-    #     if task_type == TYPE_PRIME:
-    #         task_prime(task['value'])
-    #     elif task_type == TYPE_WORD:
-    #         task_word(task['word'])
-    #     elif task_type == TYPE_UPPER:
-    #         task_upper(task['text'])
-    #     elif task_type == TYPE_SUM:
-    #         task_sum(task['start'], task['end'])
-    #     elif task_type == TYPE_NAME:
-    #         task_name(task['url'])
-    #     else:
-    #         print(f'Error: unknown task type {task_type}')
-    # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-    # TODO start pools and block until they are done before trying to print
     # Load tasks
     task_files = glob.glob("tasks/*.task")
     tasks = [load_json_file(file) for file in task_files]
+    count = len(tasks)
+
+    # TODO Create process pools
+    prime_pool = mp.Pool(processes=10)
+    word_pool = mp.Pool(processes=20)
+    upper_pool = mp.Pool(processes=20)
+    sum_pool = mp.Pool(processes=10)
+    name_pool = mp.Pool(processes=20)
+
+    # prime_pool = mp.Pool(processes=1)
+    # word_pool = mp.Pool(processes=1)
+    # upper_pool = mp.Pool(processes=1)
+    # sum_pool = mp.Pool(processes=1)
+    # name_pool = mp.Pool(processes=1)
     
-    # Define process pools
-    cpu_bound_pool = mp.Pool(processes=mp.cpu_count())  # For CPU-intensive tasks
-    io_bound_pool = mp.Pool(processes=10)  # For I/O-intensive tasks
-    
-    # Process tasks asynchronously
+    # Process task pools asynchronously
     for task in tasks:
+        # Check task name
         if task['task'] == TYPE_PRIME:
-            cpu_bound_pool.apply_async(task_prime, (task['value'],), callback=result_primes.append)
+            prime_pool.apply_async(task_prime, (task['value'],), callback=result_primes.append) 
+            # I learned that callbacks are pretty handy when it comes to not
+            # blocking the main thread and automatically storing the results where you
+            # tell it to
         elif task['task'] == TYPE_WORD:
-            io_bound_pool.apply_async(task_word, (task['word'],), callback=result_words.append)
+            word_pool.apply_async(task_word, (task['word'],), callback=result_words.append)
         elif task['task'] == TYPE_UPPER:
-            io_bound_pool.apply_async(task_upper, (task['text'],), callback=result_upper.append)
+            upper_pool.apply_async(task_upper, (task['text'],), callback=result_upper.append)
         elif task['task'] == TYPE_SUM:
-            cpu_bound_pool.apply_async(task_sum, (task['start'], task['end']), callback=result_sums.append)
+            sum_pool.apply_async(task_sum, (task['start'], task['end']), callback=result_sums.append)
         elif task['task'] == TYPE_NAME:
-            io_bound_pool.apply_async(task_name, (task['url'],), callback=result_names.append)
+            name_pool.apply_async(task_name, (task['url'],), callback=result_names.append)
     
-    # Close and join pools
-    cpu_bound_pool.close()
-    io_bound_pool.close()
-    cpu_bound_pool.join()
-    io_bound_pool.join()
+    # TODO start pools and block until they are done before trying to print
+    prime_pool.close()
+    word_pool.close()
+    upper_pool.close()
+    sum_pool.close()
+    name_pool.close()
+    prime_pool.join()
+    word_pool.join()
+    upper_pool.join()
+    sum_pool.join()
+    name_pool.join()
 
     def print_list(lst):
         for item in lst:
