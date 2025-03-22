@@ -65,22 +65,17 @@ import random
 PHILOSOPHERS = 5
 MAX_MEALS = PHILOSOPHERS * 5
 
-def main():
-    # TODO - create the waiter (A class would be best here).
-    # TODO - create the forks (What kind of object should a fork be?).
-    # TODO - create PHILOSOPHERS philosophers.
-    # TODO - Start them eating and thinking.
-    # TODO - Display how many times each philosopher ate, 
-    #        how long they spent eating, and how long they spent thinking.
+def main():    
     class Waiter:
       # Control access to forks
+      # To avoid any potential deadlocks
       def __init__(self, num_forks):
           self.forks = [threading.Lock() for _ in range(num_forks)]  # One lock per fork
           self.lock = threading.Lock()  # Sync access to forks
 
       def request_forks(self, left, right):
           # Request to pick up forks
-          with self.lock:  # Check for locked forks
+          with self.lock:  # Check for locked forks in order to avoid infinitely blocking another philosoper
               if not self.forks[left].locked() and not self.forks[right].locked():
                   self.forks[left].acquire()
                   self.forks[right].acquire()
@@ -88,35 +83,38 @@ def main():
               return False
 
       def release_forks(self, left, right):
-          # Release both forks
+          # Release both forks to make them available again
           self.forks[left].release()
           self.forks[right].release()
 
-    
     class Philosopher(threading.Thread):
         # Philosopher thread that eats and thinks
+        # Where each philosopher is treated as an individual thread
         def __init__(self, id, waiter, left_fork, right_fork, meals_count):
             super().__init__()
             self.id = id
             self.waiter = waiter
             self.left_fork = left_fork
             self.right_fork = right_fork
+            # Each philsopher will keep track of their total meals, eating, and thinking time
             self.meals_count = meals_count
             self.eating_time = 0
             self.thinking_time = 0
 
         def run(self):
             while sum(self.meals_count) < MAX_MEALS:
-                # Think for 1 to 3 seconds
+                # Think for 1 to 3 seconds randomly
+                # They must think first
                 thinking_duration = random.uniform(1, 3)
                 self.thinking_time += thinking_duration
                 time.sleep(thinking_duration)
 
-                # Attempt to eat
+                # Attempt to eat by requesting forks
                 while not self.waiter.request_forks(self.left_fork, self.right_fork):
                     time.sleep(random.uniform(1, 3))  # Wait before trying again
 
                 # Eat for 1 to 3 seconds randomly
+                # Only eat after thinking
                 eating_duration = random.uniform(1, 3)
                 self.eating_time += eating_duration
                 self.meals_count[self.id] += 1
@@ -129,7 +127,7 @@ def main():
     waiter = Waiter(num_philosophers)
     meals_count = [0] * num_philosophers  # Track meals eaten philosophers
 
-    # Create and start philosopher threads
+    # Create and start philosopher threads to max concurrency
     philosophers = []
     for i in range(num_philosophers):
         left_fork = i
