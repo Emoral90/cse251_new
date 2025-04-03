@@ -15,7 +15,7 @@ import requests
 from common import *
 from log import Log
 from cse251functions import *
-from functions import depth_fs_pedigree, breadth_fs_pedigree, breadth_fs_pedigree_limit5
+from functions2 import depth_fs_pedigree, breadth_fs_pedigree, breadth_fs_pedigree_limit5
 
 DFS = 'Depth First Search'
 BFS = 'Breadth First Search'
