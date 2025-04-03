@@ -1,276 +1,60 @@
-13:56:38| 
+14:24:08| 
 
-13:56:38| ############################################################
-13:56:38| Depth First Search: 6 generations
-13:56:38| ############################################################
-13:57:49| 71.51501450
-13:57:50| 
-
-
-13:57:50| ************* TREE DISPLAY *************
-13:57:50| Family id: 5008366322
-13:57:50|   Husband: Noah, 27-10-1784
-13:57:50|   Wife: Chloe, 22-2-1827
-13:57:50|   Husband Parents: Jaxon and Elizabeth
-13:57:50|   Wife Parents: Wyatt and Aubrey
-13:57:50|   Children: William
-13:57:50| Family id: 4853593167
-13:57:50|   Husband: Wyatt, 31-10-2019
-13:57:50|   Wife: Aubrey, 3-12-1952
-13:57:50|   Husband Parents: Oliver and Elizabeth
-13:57:50|   Wife Parents: None
-13:57:50|   Children: Mia, Amelia, Charlotte, Joshua, Chloe
-13:57:50| Family id: 4862738388
-13:57:50|   Husband: Oliver, 1-7-1969
-13:57:50|   Wife: Elizabeth, 10-10-2007
-13:57:50|   Husband Parents: Carter and Avery
-13:57:50|   Wife Parents: Grayson and Everly
-13:57:50|   Children: Lillian, Isaac, Hudson, Emily, Madison, Eleanor, Wyatt
-13:57:50| Family id: 4922812551
-13:57:50|   Husband: Grayson, 13-7-1840
-13:57:50|   Wife: Everly, 17-12-1856
-13:57:50|   Husband Parents: Lincoln and Avery
-13:57:50|   Wife Parents: Ethan and Leah
-13:57:50|   Children: Dylan, Addison, Noah, Sophia, Isabella, Eleanor, Avery, Joshua, Elizabeth
-13:57:50| Family id: 5293109563
-13:57:50|   Husband: Ethan, 4-8-1945
-13:57:50|   Wife: Leah, 21-12-1894
-13:57:50|   Husband Parents: Theodore and Hazel
-13:57:50|   Wife Parents: Anthony and Victoria
-13:57:50|   Children: Madison, Mia, Liam, Ava, Audrey, Charlotte, Chloe, Everly
-13:57:50| Family id: 5242447593
-13:57:50|   Husband: Anthony, 16-8-1842
-13:57:50|   Wife: Victoria, 27-12-1984
-13:57:50|   Husband Parents: None
-13:57:50|   Wife Parents: None
-13:57:50|   Children: Nora, Aiden, Emilia, Henry, Everly, Emily, Liam, Leah
-13:57:50| Family id: 5301468288
-13:57:50|   Husband: Theodore, 14-6-1946
-13:57:50|   Wife: Hazel, 27-11-1767
-13:57:50|   Husband Parents: None
-13:57:50|   Wife Parents: None
-13:57:50|   Children: Elizabeth, Ethan
-13:57:50| Family id: 4931179244
-13:57:50|   Husband: Lincoln, 24-2-1815
-13:57:50|   Wife: Avery, 19-7-1984
-13:57:50|   Husband Parents: Lucas and Violet
-13:57:50|   Wife Parents: Josiah and Emily
-13:57:50|   Children: Grace, Addison, Lillian, Elizabeth, Grayson
-13:57:50| Family id: 5283956690
-13:57:50|   Husband: Josiah, 9-12-2018
-13:57:50|   Wife: Emily, 4-11-1917
-13:57:50|   Husband Parents: None
-13:57:50|   Wife Parents: None
-13:57:50|   Children: Elizabeth, Isabella, Henry, Penelope, Lincoln, Ezra, Audrey, Sophia, Avery
-13:57:50| Family id: 5275868277
-13:57:50|   Husband: Lucas, 26-5-1781
-13:57:50|   Wife: Violet, 29-4-1818
-13:57:50|   Husband Parents: None
-13:57:50|   Wife Parents: None
-13:57:50|   Children: Aiden, Matthew, Michael, Olivia, Eleanor, Riley, Asher, Lincoln
-13:57:50| Family id: 4937935165
-13:57:50|   Husband: Carter, 24-1-1966
-13:57:50|   Wife: Avery, 8-9-1882
-13:57:50|   Husband Parents: Sebastian and Eleanor
-13:57:50|   Wife Parents: Alexander and Evelyn
-13:57:50|   Children: Oliver
-13:57:50| Family id: 4963534920
-13:57:50|   Husband: Alexander, 23-9-1763
-13:57:50|   Wife: Evelyn, 9-3-1889
-13:57:50|   Husband Parents: Levi and Nora
-13:57:50|   Wife Parents: Jacob and Luna
-13:57:50|   Children: Amelia, Ava, Eleanor, Jacob, Avery
-13:57:50| Family id: 4913675582
-13:57:50|   Husband: Jacob, 3-1-1989
-13:57:50|   Wife: Luna, 29-6-1815
-13:57:50|   Husband Parents: None
-13:57:50|   Wife Parents: None
-13:57:50|   Children: Sophia, Christopher, Madison, Anthony, Evelyn
-13:57:50| Family id: 4905579473
-13:57:50|   Husband: Levi, 26-4-2011
-13:57:50|   Wife: Nora, 22-10-1782
-13:57:50|   Husband Parents: None
-13:57:50|   Wife Parents: None
-13:57:50|   Children: Owen, Benjamin, Mateo, Mason, Alexander
-13:57:50| Family id: 4947088538
-13:57:50|   Husband: Sebastian, 6-4-1775
-13:57:50|   Wife: Eleanor, 20-6-1771
-13:57:50|   Husband Parents: None
-13:57:50|   Wife Parents: Jaxon and Harper
-13:57:50|   Children: Carter
-13:57:50| Family id: 4955184867
-13:57:50|   Husband: Jaxon, 29-12-1956
-13:57:50|   Wife: Harper, 14-1-1904
-13:57:50|   Husband Parents: None
-13:57:50|   Wife Parents: None
-13:57:50|   Children: Eleanor
-13:57:50| Family id: 5016454235
-13:57:50|   Husband: Jaxon, 13-6-1896
-13:57:50|   Wife: Elizabeth, 30-10-1956
-13:57:50|   Husband Parents: David and Everly
-13:57:50|   Wife Parents: Samuel and Leah
-13:57:50|   Children: Hudson, Lucas, Stella, Samuel, Thomas, Noah
-13:57:50| Family id: 5094040312
-13:57:50|   Husband: Samuel, 18-6-1873
-13:57:50|   Wife: Leah, 26-11-2019
-13:57:50|   Husband Parents: Luke and Mila
-13:57:50|   Wife Parents: Theodore and Isabella
-13:57:50|   Children: Zoey, Noah, Nora, Joshua, Jayden, Evelyn, Ava, Elizabeth
-13:57:50| Family id: 4885949355
-13:57:50|   Husband: Theodore, 24-3-1827
-13:57:50|   Wife: Isabella, 25-3-1947
-13:57:50|   Husband Parents: None
-13:57:50|   Wife Parents: Thomas and Hannah
-13:57:50|   Children: Leah
-13:57:50| Family id: 4895102256
-13:57:50|   Husband: Thomas, 24-2-1755
-13:57:50|   Wife: Hannah, 19-11-2011
-13:57:50|   Husband Parents: Joseph and Grace
-13:57:50|   Wife Parents: Jack and Abigail
-13:57:50|   Children: Anthony, Isabella
-13:57:50| Family id: 4845226726
-13:57:50|   Husband: Jack, 8-11-1841
-13:57:50|   Wife: Abigail, 29-11-1772
-13:57:50|   Husband Parents: None
-13:57:50|   Wife Parents: None
-13:57:50|   Children: Abigail, Violet, William, Michael, Natalie, Harper, Sophia, Hannah
-13:57:50| Family id: 4836081817
-13:57:50|   Husband: Joseph, 21-7-1806
-13:57:50|   Wife: Grace, 2-4-1991
-13:57:50|   Husband Parents: None
-13:57:50|   Wife Parents: None
-13:57:50|   Children: Layla, Lincoln, Thomas
-13:57:50| Family id: 5036076097
-13:57:50|   Husband: Luke, 26-11-1943
-13:57:50|   Wife: Mila, 14-7-1804
-13:57:50|   Husband Parents: Benjamin and Camila
-13:57:50|   Wife Parents: Thomas and Mila
-13:57:50|   Children: Logan, Samuel
-13:57:50| Family id: 5061676188
-13:57:50|   Husband: Thomas, 1-11-1942
-13:57:50|   Wife: Mila, 25-1-1855
-13:57:50|   Husband Parents: Levi and Violet
-13:57:50|   Wife Parents: Luke and Aria
-13:57:50|   Children: Owen, Asher, Mateo, Avery, Mila
-13:57:50| Family id: 4877590594
-13:57:50|   Husband: Luke, 24-9-1767
-13:57:50|   Wife: Aria, 15-6-1956
-13:57:50|   Husband Parents: None
-13:57:50|   Wife Parents: None
-13:57:50|   Children: Madison, Mia, Emilia, Ella, Mia, Luke, Emily, Benjamin, Mila
-13:57:50| Family id: 4869502693
-13:57:50|   Husband: Levi, 11-11-1967
-13:57:50|   Wife: Violet, 25-3-1928
-13:57:50|   Husband Parents: None
-13:57:50|   Wife Parents: None
-13:57:50|   Children: Thomas
-13:57:50| Family id: 5044180910
-13:57:50|   Husband: Benjamin, 5-5-1998
-13:57:50|   Wife: Camila, 12-9-1886
-13:57:50|   Husband Parents: Jaxon and Sophia
-13:57:50|   Wife Parents: None
-13:57:50|   Children: Julian, Luke
-13:57:50| Family id: 5053579575
-13:57:50|   Husband: Jaxon, 4-2-1883
-13:57:50|   Wife: Sophia, 3-9-2005
-13:57:50|   Husband Parents: None
-13:57:50|   Wife Parents: None
-13:57:50|   Children: Ethan, Scarlett, Asher, Avery, Elijah, Benjamin
-13:57:50| Family id: 5025599392
-13:57:50|   Husband: David, 22-9-1818
-13:57:50|   Wife: Everly, 14-11-1958
-13:57:50|   Husband Parents: None
-13:57:50|   Wife Parents: Ethan and Audrey
-13:57:50|   Children: Jaxon
-13:57:50| Family id: 4966594825
-13:57:50|   Husband: Ethan, 14-10-1896
-13:57:50|   Wife: Audrey, 5-6-1920
-13:57:50|   Husband Parents: William and Audrey
-13:57:50|   Wife Parents: Josiah and Lillian
-13:57:50|   Children: Theodore, Harper, Owen, Violet, Everly
-13:57:50| Family id: 5068440493
-13:57:50|   Husband: Josiah, 17-5-1786
-13:57:50|   Wife: Lillian, 25-8-1925
-13:57:50|   Husband Parents: Thomas and Ella
-13:57:50|   Wife Parents: Asher and Violet
-13:57:50|   Children: Ella, Avery, Levi, Scarlett, Riley, Grace, Audrey
-13:57:50| Family id: 5085952147
-13:57:50|   Husband: Asher, 29-11-1987
-13:57:50|   Wife: Violet, 22-10-1973
-13:57:50|   Husband Parents: None
-13:57:50|   Wife Parents: None
-13:57:50|   Children: Lucas, Aiden, Lillian
-13:57:50| Family id: 5076798730
-13:57:50|   Husband: Thomas, 20-12-1944
-13:57:50|   Wife: Ella, 28-2-1958
-13:57:50|   Husband Parents: None
-13:57:50|   Wife Parents: None
-13:57:50|   Children: Grace, Mia, Liam, Lincoln, Aria, Grace, Nora, Mila, Josiah
-13:57:50| Family id: 4975994006
-13:57:50|   Husband: William, 18-2-1964
-13:57:50|   Wife: Audrey, 8-8-1824
-13:57:50|   Husband Parents: Thomas and Sofia
-13:57:50|   Wife Parents: Christopher and Violet
-13:57:50|   Children: Ethan
-13:57:50| Family id: 4993243204
-13:57:50|   Husband: Christopher, 15-1-1829
-13:57:50|   Wife: Violet, 4-2-1858
-13:57:50|   Husband Parents: None
-13:57:50|   Wife Parents: None
-13:57:50|   Children: Ethan, Luna, Camila, Lucas, Audrey
-13:57:50| Family id: 4984090367
-13:57:50|   Husband: Thomas, 6-2-2009
-13:57:50|   Wife: Sofia, 7-11-1815
-13:57:50|   Husband Parents: None
-13:57:50|   Wife Parents: None
-13:57:50|   Children: Andrew, Asher, James, William
-13:57:50| 
-13:57:50| Number of people                    : 205
-13:57:50| Number of families                  : 36
-13:57:50| Max generations                     : 6
-13:57:50| People connected to starting family : 205
-13:57:50| 
-13:57:50| total_time                          : 71.51501
-13:57:50| Generations                         : 6
-13:57:50| People % Families / second          : 3.36992
-13:57:50| 
-13:57:50| 
-
-13:57:50| ############################################################
-13:57:50| Breadth First Search: 6 generations
-13:57:50| ############################################################
-13:57:50| 0.00044630
-13:57:50| 
+14:24:08| ############################################################
+14:24:08| Depth First Search: 6 generations
+14:24:08| ############################################################
+14:24:11| 2.35693530
+14:24:11| 
 
 
-13:57:50| ************* TREE DISPLAY *************
-13:57:50| 
-13:57:50| Number of people                    : 0
-13:57:50| Number of families                  : 0
-13:57:50| Max generations                     : 0
-13:57:50| People connected to starting family : 0
-13:57:50| 
-13:57:50| total_time                          : 0.00045
-13:57:50| Generations                         : 6
-13:57:50| People % Families / second          : 0.00000
-13:57:50| 
-13:57:51| 
+14:24:11| ************* TREE DISPLAY *************
+14:24:11| 
+14:24:11| Number of people                    : 0
+14:24:11| Number of families                  : 0
+14:24:11| Max generations                     : 0
+14:24:11| People connected to starting family : 0
+14:24:11| 
+14:24:11| total_time                          : 2.35694
+14:24:11| Generations                         : 6
+14:24:11| People % Families / second          : 0.00000
+14:24:11| 
+14:24:11| 
 
-13:57:51| ############################################################
-13:57:51| Breadth First Search limit 5: 6 generations
-13:57:51| ############################################################
-13:57:51| 0.00077830
-13:57:51| 
+14:24:11| ############################################################
+14:24:11| Breadth First Search: 6 generations
+14:24:11| ############################################################
+14:24:11| 0.00234680
+14:24:11| 
 
 
-13:57:51| ************* TREE DISPLAY *************
-13:57:51| 
-13:57:51| Number of people                    : 0
-13:57:51| Number of families                  : 0
-13:57:51| Max generations                     : 0
-13:57:51| People connected to starting family : 0
-13:57:51| 
-13:57:51| total_time                          : 0.00078
-13:57:51| Generations                         : 6
-13:57:51| People % Families / second          : 0.00000
-13:57:51| 
+14:24:11| ************* TREE DISPLAY *************
+14:24:11| 
+14:24:11| Number of people                    : 0
+14:24:11| Number of families                  : 0
+14:24:11| Max generations                     : 0
+14:24:11| People connected to starting family : 0
+14:24:11| 
+14:24:11| total_time                          : 0.00235
+14:24:11| Generations                         : 6
+14:24:11| People % Families / second          : 0.00000
+14:24:11| 
+14:24:12| 
+
+14:24:12| ############################################################
+14:24:12| Breadth First Search limit 5: 6 generations
+14:24:12| ############################################################
+14:24:12| 0.00280840
+14:24:12| 
+
+
+14:24:12| ************* TREE DISPLAY *************
+14:24:12| 
+14:24:12| Number of people                    : 0
+14:24:12| Number of families                  : 0
+14:24:12| Max generations                     : 0
+14:24:12| People connected to starting family : 0
+14:24:12| 
+14:24:12| total_time                          : 0.00281
+14:24:12| Generations                         : 6
+14:24:12| People % Families / second          : 0.00000
+14:24:12| 
